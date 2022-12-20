@@ -10,7 +10,7 @@ version = project.mod_version
 group = project.maven_group
 archivesBaseName = project.archives_base_name
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+java.toolchain.languageVersion = JavaLanguageVersion.of(16)
 
 minecraft {
     mappings channel: 'official', version: project.minecraft_version
