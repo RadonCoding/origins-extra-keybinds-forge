@@ -1,0 +1,100 @@
+plugins {
+    id 'net.minecraftforge.gradle' version '5.1.+'
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'idea'
+apply plugin: 'maven-publish'
+
+version = project.mod_version
+group = project.maven_group
+archivesBaseName = project.archives_base_name
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: 'official', version: project.minecraft_version
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
+            mods {
+                extrakeybinds {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
+            mods {
+                extrakeybinds {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
+            args '--mod', 'extrakeybinds', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+
+            mods {
+                extrakeybinds {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+repositories {
+    maven {
+        url 'https://cursemaven.com/'
+        content {
+            includeGroup 'curse.maven'
+        }
+    }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
+    implementation fg.deobf("curse.maven:origins-forge-474438:${project.origins_file_id}")
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title": "Origins Extra Keybinds",
+                "Specification-Vendor": "RadonCoding",
+                "Specification-Version": project.version,
+                "Implementation-Title": project.name,
+                "Implementation-Version": version,
+                "Implementation-Vendor" :"RadonCoding",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+jar.finalizedBy('reobfJar')
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file:///${project.projectDir}/mcmodsrepo"
+        }
+    }
+}

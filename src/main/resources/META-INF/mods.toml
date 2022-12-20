@@ -1,0 +1,25 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="GPL-3.0"
+[[mods]]
+modId="extrakeybinds"
+version="${file.jarVersion}"
+displayName="CyaConnors Extra Origins Keybinds"
+logoFile="assets/extrakeybinds/icon.png"
+authors="CyaConnor, RadonCoding"
+description='''
+Adds more keybinds to the Origins mod.
+'''
+
+[[dependencies.extrakeybinds]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.extrakeybinds]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"
