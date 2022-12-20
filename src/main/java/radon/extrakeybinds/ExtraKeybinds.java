@@ -4,10 +4,10 @@ import com.mojang.blaze3d.platform.InputConstants;
 import io.github.apace100.apoli.ApoliClient;
 import io.github.apace100.origins.Origins;
 import net.minecraft.client.KeyMapping;
+import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fmlclient.registry.ClientRegistry;
 import org.lwjgl.glfw.GLFW;
 
 @Mod("extrakeybinds")
