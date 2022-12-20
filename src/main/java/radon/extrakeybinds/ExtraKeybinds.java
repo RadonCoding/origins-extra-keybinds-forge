@@ -5,6 +5,7 @@ import io.github.apace100.apoli.ApoliClient;
 import io.github.apace100.origins.Origins;
 import io.github.apace100.origins.OriginsClient;
 import net.minecraft.client.KeyMapping;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.lwjgl.glfw.GLFW;
