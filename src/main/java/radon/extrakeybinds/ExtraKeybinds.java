@@ -10,7 +10,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.lwjgl.glfw.GLFW;
 
-@Mod("extrakeybinds")
+@Mod("extrakeybinds2")
 public class ExtraKeybinds {
 
 	public static KeyBinding useTernaryActivePowerKeybind;
