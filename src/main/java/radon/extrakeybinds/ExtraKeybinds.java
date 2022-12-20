@@ -3,9 +3,10 @@ package radon.extrakeybinds;
 import com.mojang.blaze3d.platform.InputConstants;
 import io.github.apace100.apoli.ApoliClient;
 import io.github.apace100.origins.Origins;
-import io.github.apace100.origins.OriginsClient;
 import net.minecraft.client.KeyMapping;
+import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.lwjgl.glfw.GLFW;
 
@@ -22,48 +23,48 @@ public class ExtraKeybinds {
 	public static KeyMapping useDenaryActivePowerKeybind;
 
 	public ExtraKeybinds() {
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onRegisterKeyMappings);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
 	}
 
-	private void onRegisterKeyMappings(final RegisterKeyMappingsEvent event) {
+	private void onClientSetup(final FMLClientSetupEvent event) {
 		useTernaryActivePowerKeybind = new KeyMapping("key.origins.ternary_active", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "category." + Origins.MODID);
 		ApoliClient.registerPowerKeybinding("key.origins.ternary_active", useTernaryActivePowerKeybind);
 		ApoliClient.registerPowerKeybinding("ternary", useTernaryActivePowerKeybind);
-		event.register(useTernaryActivePowerKeybind);
+		ClientRegistry.registerKeyBinding(useTernaryActivePowerKeybind);
 
 		useQuaternaryActivePowerKeybind = new KeyMapping("key.origins.quaternary_active", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "category." + Origins.MODID);
 		ApoliClient.registerPowerKeybinding("key.origins.quaternary_active", useQuaternaryActivePowerKeybind);
 		ApoliClient.registerPowerKeybinding("quaternary", useQuaternaryActivePowerKeybind);
-		event.register(useQuaternaryActivePowerKeybind);
+		ClientRegistry.registerKeyBinding(useQuaternaryActivePowerKeybind);
 
 		useQuinaryActivePowerKeybind = new KeyMapping("key.origins.quinary_active", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "category." + Origins.MODID);
 		ApoliClient.registerPowerKeybinding("key.origins.quinary_active", useQuinaryActivePowerKeybind);
 		ApoliClient.registerPowerKeybinding("quinary", useQuinaryActivePowerKeybind);
-		event.register(useQuinaryActivePowerKeybind);
+		ClientRegistry.registerKeyBinding(useQuinaryActivePowerKeybind);
 
 		useSenaryActivePowerKeybind = new KeyMapping("key.origins.senary_active", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "category." + Origins.MODID);
 		ApoliClient.registerPowerKeybinding("key.origins.senary_active", useSenaryActivePowerKeybind);
 		ApoliClient.registerPowerKeybinding("senary", useSenaryActivePowerKeybind);
-		event.register(useSenaryActivePowerKeybind);
+		ClientRegistry.registerKeyBinding(useSenaryActivePowerKeybind);
 
 		useSeptenaryActivePowerKeybind = new KeyMapping("key.origins.septenary_active", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "category." + Origins.MODID);
 		ApoliClient.registerPowerKeybinding("key.origins.septenary_active", useSeptenaryActivePowerKeybind);
 		ApoliClient.registerPowerKeybinding("septenary", useSeptenaryActivePowerKeybind);
-		event.register(useSeptenaryActivePowerKeybind);
+		ClientRegistry.registerKeyBinding(useSeptenaryActivePowerKeybind);
 
 		useOctonaryActivePowerKeybind = new KeyMapping("key.origins.octonary_active", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "category." + Origins.MODID);
 		ApoliClient.registerPowerKeybinding("key.origins.octonary_active", useOctonaryActivePowerKeybind);
 		ApoliClient.registerPowerKeybinding("octonary", useOctonaryActivePowerKeybind);
-		event.register(useOctonaryActivePowerKeybind);
+		ClientRegistry.registerKeyBinding(useOctonaryActivePowerKeybind);
 
 		useNonaryActivePowerKeybind = new KeyMapping("key.origins.nonary_active", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "category." + Origins.MODID);
 		ApoliClient.registerPowerKeybinding("key.origins.nonary_active", useNonaryActivePowerKeybind);
 		ApoliClient.registerPowerKeybinding("nonnary", useNonaryActivePowerKeybind);
-		event.register(useNonaryActivePowerKeybind);
+		ClientRegistry.registerKeyBinding(useNonaryActivePowerKeybind);
 
 		useDenaryActivePowerKeybind = new KeyMapping("key.origins.denary_active", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_UNKNOWN, "category." + Origins.MODID);
 		ApoliClient.registerPowerKeybinding("key.origins.denary_active", useDenaryActivePowerKeybind);
 		ApoliClient.registerPowerKeybinding("denary", useDenaryActivePowerKeybind);
-		event.register(useDenaryActivePowerKeybind);
+		ClientRegistry.registerKeyBinding(useDenaryActivePowerKeybind);
 	}
 }
