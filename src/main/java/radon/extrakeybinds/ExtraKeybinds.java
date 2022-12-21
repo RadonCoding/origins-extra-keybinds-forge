@@ -2,14 +2,9 @@ package radon.extrakeybinds;
 
 import io.github.apace100.origins.Origins;
 import io.github.apace100.origins.OriginsClient;
-<<<<<<< HEAD
-import net.minecraft.client.KeyMapping;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
-=======
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.client.util.InputMappings;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
->>>>>>> db66f0fafddabcf8af5f767fc8c24ab7f0038003
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
