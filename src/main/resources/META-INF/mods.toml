@@ -14,12 +14,12 @@ Adds more keybinds to the Origins mod.
 [[dependencies.extrakeybinds]]
     modId="forge"
     mandatory=true
-    versionRange="[36,)"
+    versionRange="[40,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.extrakeybinds]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5,1.17)"
+    versionRange="[1.18.2)"
     ordering="NONE"
     side="BOTH"
