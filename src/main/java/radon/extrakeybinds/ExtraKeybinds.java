@@ -12,7 +12,6 @@ import org.lwjgl.glfw.GLFW;
 
 @Mod("extrakeybinds")
 public class ExtraKeybinds {
-
 	public static KeyMapping useTernaryActivePowerKeybind;
 	public static KeyMapping useQuaternaryActivePowerKeybind;
 	public static KeyMapping useQuinaryActivePowerKeybind;
