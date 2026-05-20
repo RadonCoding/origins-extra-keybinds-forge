@@ -48,7 +48,7 @@ jobs:
           project_id: ${{ vars.CURSEFORGE_PROJECT_ID }}
           game_endpoint: minecraft
           file_path: ${{ steps.jar.outputs.path }}
-          game_versions: Minecraft 1.20:1.20.1,Forge,NeoForge,environment:Client
+          game_versions: Minecraft 1.20:1.20.1,Forge,NeoForge
           release_type: release
           relations: "origins-forge:requiredDependency"
 
