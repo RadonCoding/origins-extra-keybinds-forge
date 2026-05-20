@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - '1.*'
+      - 1.20.1
   workflow_dispatch:
 
 jobs:
@@ -26,11 +26,7 @@ jobs:
       - name: Find jar
         id: jar
         run: echo "path=$(find build/libs -name '*.jar')" >> $GITHUB_OUTPUT
-
-      - name: Read gradle.properties
-        id: props
-        run: echo "minecraft_version=$(grep '^minecraft_version=' gradle.properties | cut -d= -f2)" >> $GITHUB_OUTPUT
-
+        
       - name: Publish to CurseForge
         uses: itsmeow/curseforge-upload@v3
         with:
@@ -38,5 +34,5 @@ jobs:
           project_id: 758302
           game_endpoint: minecraft
           file_path: ${{ steps.jar.outputs.path }}
-          game_versions: ${{ steps.props.outputs.minecraft_version }},Java 17
+          game_versions: Minecraft 1.20:1.20.1,Java 17,Forge
           release_type: release
