@@ -49,6 +49,7 @@ jobs:
           mod_version=$(grep '^mod_version=' gradle.properties | cut -d'=' -f2-)
           minecraft_version=$(grep '^minecraft_version=' gradle.properties | cut -d'=' -f2-)
           echo "name=$mod_name $minecraft_version-$mod_version" >> $GITHUB_OUTPUT
+          echo "version=$minecraft_version-$mod_version" >> $GITHUB_OUTPUT
 
       - name: Publish to CurseForge
         uses: itsmeow/curseforge-upload@v3
@@ -68,6 +69,7 @@ jobs:
           modrinth-token: ${{ secrets.MODRINTH_API_TOKEN }}
           files: ${{ steps.jar.outputs.path }}
           name: ${{ steps.props.outputs.name }}
+          version: ${{ steps.props.outputs.version }}
           game-versions: 1.20.1
           loaders: |
             forge
@@ -75,3 +77,13 @@ jobs:
           version-type: release
           dependencies: |
             origins-forge
+
+      - name: Patch Modrinth environment
+        run: |
+          version=$(curl -s "https://api.modrinth.com/v2/project/${{ vars.MODRINTH_PROJECT_ID }}/version" \
+            -H "Authorization: ${{ secrets.MODRINTH_API_TOKEN }}" | \
+            jq -r 'sort_by(.date_published) | last | .id')
+          curl -X PATCH "https://api.modrinth.com/v3/version/version" \
+            -H "Authorization: ${{ secrets.MODRINTH_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"environment":"client_only"}'
