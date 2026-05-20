@@ -48,6 +48,6 @@ jobs:
           project_id: 758302
           game_endpoint: minecraft
           file_path: ${{ steps.jar.outputs.path }}
-          game_versions: Minecraft 1.20:1.20.1,Forge,NeoForge
+          game_versions: Minecraft 1.20:1.20.1,Forge,NeoForge,environment:Client
           release_type: release
           relations: "origins-forge:requiredDependency"
