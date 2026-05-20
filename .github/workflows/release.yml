@@ -2,7 +2,7 @@ name: Release
 on:
   push:
     branches:
-      - 1.18.2
+      - 1.16.5
   workflow_dispatch:
   
 jobs:
@@ -48,6 +48,6 @@ jobs:
           project_id: 758302
           game_endpoint: minecraft
           file_path: ${{ steps.jar.outputs.path }}
-          game_versions: Minecraft 1.18:1.18.2,Forge,environment:Client
+          game_versions: Minecraft 1.16:1.16.5,Forge,environment:Client
           release_type: release
           relations: "origins-forge:requiredDependency"

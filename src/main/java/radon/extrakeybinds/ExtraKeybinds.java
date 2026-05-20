@@ -1,11 +1,11 @@
 package radon.extrakeybinds;
 
-import com.mojang.blaze3d.platform.InputConstants;
-import io.github.apace100.apoli.ApoliClient;
 import io.github.apace100.origins.Origins;
-import net.minecraft.client.KeyMapping;
-import net.minecraftforge.client.ClientRegistry;
+import io.github.apace100.origins.OriginsClient;
+import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.client.util.InputMappings;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -31,14 +31,14 @@ public class ExtraKeybinds {
 
     private void clientSetup(final FMLClientSetupEvent event) {
         for (String key : KEYS) {
-            KeyMapping mapping = new KeyMapping(
+            KeyBinding mapping = new KeyBinding(
                     String.format("key.origins.%s_active", key),
-                    InputConstants.Type.KEYSYM,
+                    InputMappings.Type.KEYSYM,
                     GLFW.GLFW_KEY_UNKNOWN,
                     String.format("category.%s", Origins.MODID)
             );
-            ApoliClient.registerPowerKeybinding(mapping.getName(), mapping);
-            ApoliClient.registerPowerKeybinding(key, mapping);
+            OriginsClient.registerPowerKeybinding(mapping.getName(), mapping);
+            OriginsClient.registerPowerKeybinding(key, mapping);
             ClientRegistry.registerKeyBinding(mapping);
         }
     }
