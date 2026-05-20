@@ -10,6 +10,6 @@ jobs:
   release:
     uses: RadonCoding/origins-extra-keybinds-forge/.github/workflows/release-template.yml@main
     with:
-      curseforge_game_versions: "Minecraft 1.16:1.16.5,Forge,environment:Client"
+      curseforge_game_version: "Minecraft 1.16:1.16.5,Forge,environment:Client"
       modrinth_game_version: "1.16.5"
     secrets: inherit
