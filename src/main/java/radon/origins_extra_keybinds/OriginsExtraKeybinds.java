@@ -1,4 +1,4 @@
-package radon.extrakeybinds;
+package radon.origins_extra_keybinds;
 
 import io.github.apace100.origins.Origins;
 import io.github.apace100.origins.OriginsClient;
@@ -11,8 +11,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.lwjgl.glfw.GLFW;
 
-@Mod("extrakeybinds")
-public class ExtraKeybinds {
+@Mod("origins_extra_keybinds")
+public class OriginsExtraKeybinds {
     private static final String[] KEYS = {
             "ternary",
             "quaternary",
@@ -24,7 +24,7 @@ public class ExtraKeybinds {
             "denary",
     };
 
-    public ExtraKeybinds() {
+    public OriginsExtraKeybinds() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::clientSetup);
     }
