@@ -1,4 +1,5 @@
 name: Release
+
 on:
   push:
     branches:
@@ -73,4 +74,4 @@ jobs:
             neoforge
           version-type: release
           dependencies: |
-            origins-forge@1.20.1-1.10.0.9
+            origins-forge
