@@ -70,9 +70,7 @@ jobs:
           name: ${{ steps.props.outputs.name }}
           version: ${{ steps.props.outputs.version }}
           game-versions: 1.20.1
-          loaders: |
-            forge
-            neoforge
+          loaders: forge
           version-type: release
           dependencies: |
             origins-forge
