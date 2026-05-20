@@ -26,6 +26,6 @@ jobs:
           for branch in $(git branch -r | grep 'origin/1\.' | sed 's|origin/||'); do
             git checkout $branch
             git checkout main -- README.md LICENSE .github/workflows/release.yml
-            git commit -m "Synchronization from main" || echo "Nothing to sync for $branch"
+            git commit -m "Synchronization" || echo "Nothing to synchronize for $branch"
             git push origin $branch
           done
