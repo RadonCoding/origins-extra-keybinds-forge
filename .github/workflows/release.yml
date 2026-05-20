@@ -1,13 +1,27 @@
 name: Release
-
 on:
   push:
     branches:
       - 1.20.1
   workflow_dispatch:
-
+  
 jobs:
+  configure:
+    runs-on: ubuntu-latest
+    outputs:
+      deploy: ${{ steps.flags.outputs.deploy }}
+    steps:
+      - id: flags
+        run: |
+          if [[ "${{ github.event_name }}" == "push" && "${{ contains(join(github.event.commits.*.message), '#skip') }}" == "false" ]]; then
+            echo "deploy=true" >> $GITHUB_OUTPUT
+          else
+            echo "deploy=false" >> $GITHUB_OUTPUT
+          fi
+          
   release:
+    if: ${{ needs.configure.outputs.deploy == 'true' }}
+    needs: configure
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -22,7 +36,7 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew build --no-daemon
-
+          
       - name: Find jar
         id: jar
         run: echo "path=$(find build/libs -name '*.jar')" >> $GITHUB_OUTPUT
@@ -34,5 +48,6 @@ jobs:
           project_id: 758302
           game_endpoint: minecraft
           file_path: ${{ steps.jar.outputs.path }}
-          game_versions: Minecraft 1.20:1.20.1,Java 17,Forge
+          game_versions: Minecraft 1.20:1.20.1,Forge,NeoForge
           release_type: release
+          relations: "origins-forge:requiredDependency"
