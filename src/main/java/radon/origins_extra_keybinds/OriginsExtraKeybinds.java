@@ -1,4 +1,4 @@
-package radon.extrakeybinds;
+package radon.origins_extra_keybinds;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import io.github.apace100.apoli.ApoliClient;
@@ -10,8 +10,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.lwjgl.glfw.GLFW;
 
-@Mod("extrakeybinds")
-public class ExtraKeybinds {
+@Mod("origins_extra_keybinds")
+public class OriginsExtraKeybinds {
     private static final String[] KEYS = {
             "ternary",
             "quaternary",
@@ -23,7 +23,7 @@ public class ExtraKeybinds {
             "denary",
     };
 
-    public ExtraKeybinds(FMLJavaModLoadingContext context) {
+    public OriginsExtraKeybinds(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
         modEventBus.addListener(this::onRegisterKeyMappings);
     }

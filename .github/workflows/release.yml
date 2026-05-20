@@ -41,6 +41,14 @@ jobs:
         id: jar
         run: echo "path=$(find build/libs -name '*.jar')" >> $GITHUB_OUTPUT
 
+      - name: Read gradle.properties
+        id: props
+        run: |
+          mod_name=$(grep '^mod_name=' gradle.properties | cut -d'=' -f2-)
+          mod_version=$(grep '^mod_version=' gradle.properties | cut -d'=' -f2-)
+          minecraft_version=$(grep '^minecraft_version=' gradle.properties | cut -d'=' -f2-)
+          echo "name=$mod_name $minecraft_version-$mod_version" >> $GITHUB_OUTPUT
+
       - name: Publish to CurseForge
         uses: itsmeow/curseforge-upload@v3
         with:
@@ -58,6 +66,7 @@ jobs:
           modrinth-id: ${{ vars.MODRINTH_PROJECT_ID }}
           modrinth-token: ${{ secrets.MODRINTH_API_TOKEN }}
           files: ${{ steps.jar.outputs.path }}
+          name: ${{ steps.props.outputs.name }}
           game-versions: 1.20.1
           loaders: |
             forge
