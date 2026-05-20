@@ -79,9 +79,9 @@ jobs:
       - name: Patch Modrinth environment
         run: |
           version=$(curl -s "https://api.modrinth.com/v3/project/${{ vars.MODRINTH_PROJECT_ID }}/version?include_changelog=false" \
-            -H "Authorization: Bearer ${{ secrets.MODRINTH_API_TOKEN }}" | \
+            -H "Authorization: ${{ secrets.MODRINTH_API_TOKEN }}" | \
             jq -r 'sort_by(.date_published) | last | .id')
           curl -X PATCH "https://api.modrinth.com/v3/version/$version" \
-            -H "Authorization: Bearer ${{ secrets.MODRINTH_API_TOKEN }}" \
+            -H "Authorization: ${{ secrets.MODRINTH_API_TOKEN }}" \
             -H "Content-Type: application/json" \
             -d '{"environment":"client_only"}'
