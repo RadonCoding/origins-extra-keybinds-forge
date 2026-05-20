@@ -4,7 +4,7 @@ on:
     branches:
       - 1.20.1
   workflow_dispatch:
-  
+
 jobs:
   configure:
     runs-on: ubuntu-latest
@@ -18,7 +18,7 @@ jobs:
           else
             echo "deploy=false" >> $GITHUB_OUTPUT
           fi
-          
+
   release:
     if: ${{ needs.configure.outputs.deploy == 'true' }}
     needs: configure
@@ -31,23 +31,37 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-          
+
       - name: Run build
         run: |
           chmod +x gradlew
           ./gradlew build --no-daemon
-          
+
       - name: Find jar
         id: jar
         run: echo "path=$(find build/libs -name '*.jar')" >> $GITHUB_OUTPUT
-        
+
       - name: Publish to CurseForge
         uses: itsmeow/curseforge-upload@v3
         with:
           token: ${{ secrets.CURSEFORGE_API_TOKEN }}
-          project_id: 758302
+          project_id: ${{ vars.CURSEFORGE_PROJECT_ID }}
           game_endpoint: minecraft
           file_path: ${{ steps.jar.outputs.path }}
           game_versions: Minecraft 1.20:1.20.1,Forge,NeoForge
           release_type: release
           relations: "origins-forge:requiredDependency"
+
+      - name: Publish to Modrinth
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          modrinth-id: ${{ vars.MODRINTH_PROJECT_ID }}
+          modrinth-token: ${{ secrets.MODRINTH_API_TOKEN }}
+          files: ${{ steps.jar.outputs.path }}
+          game-versions: 1.20.1
+          loaders: |
+            forge
+            neoforge
+          version-type: release
+          dependencies: |
+            origins-forge@1.20.1-1.10.0.9
