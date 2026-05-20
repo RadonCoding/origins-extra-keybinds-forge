@@ -23,17 +23,20 @@ jobs:
           chmod +x gradlew
           ./gradlew build --no-daemon
 
+      - name: Find jar
+        id: jar
+        run: echo "path=$(find build/libs -name '*.jar')" >> $GITHUB_OUTPUT
+
       - name: Read gradle.properties
         id: props
         run: echo "minecraft_version=$(grep '^minecraft_version=' gradle.properties | cut -d= -f2)" >> $GITHUB_OUTPUT
-        
+
       - name: Publish to CurseForge
         uses: itsmeow/curseforge-upload@v3
         with:
           token: ${{ secrets.CURSEFORGE_API_TOKEN }}
           project_id: 758302
           game_endpoint: minecraft
-          file_path: build/libs/*.jar
-          changelog: ${{ github.event.head_commit.message }}
+          file_path: ${{ steps.jar.outputs.path }}
           game_versions: ${{ steps.props.outputs.minecraft_version }},Java 17
           release_type: release
