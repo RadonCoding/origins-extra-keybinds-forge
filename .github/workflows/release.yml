@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - '1.*'
+  workflow_dispatch:
 
 jobs:
   release:
