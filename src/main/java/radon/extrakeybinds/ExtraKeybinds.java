@@ -23,8 +23,8 @@ public class ExtraKeybinds {
             "denary",
     };
 
-    public ExtraKeybinds() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    public ExtraKeybinds(FMLJavaModLoadingContext context) {
+        IEventBus modEventBus = context.getModEventBus();
         modEventBus.addListener(this::onRegisterKeyMappings);
     }
 
