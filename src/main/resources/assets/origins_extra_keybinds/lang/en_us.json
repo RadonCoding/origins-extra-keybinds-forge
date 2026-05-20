@@ -1,0 +1,10 @@
+{
+  "key.origins.ternary_active": "Activate Power (Ternary)",
+  "key.origins.quaternary_active": "Activate Power (Quaternary)",
+  "key.origins.quinary_active": "Activate Power (Quinary)",
+  "key.origins.senary_active": "Activate Power (Senary)",
+  "key.origins.septenary_active": "Activate Power (Septenary)",
+  "key.origins.octonary_active": "Activate Power (Octonary)",
+  "key.origins.nonary_active": "Activate Power (Nonary)",
+  "key.origins.denary_active": "Activate Power (Denary)"
+}
